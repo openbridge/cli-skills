@@ -1,0 +1,23 @@
+[
+  {
+    "query": "We need to connect a new Amazon Seller Central account to Openbridge so we can start pulling its data.",
+    "should_trigger": true,
+    "note": "The core trigger: a platform account that has never been connected, which requires the browser consent flow."
+  },
+  {
+    "query": "Our Shopify identity shows invalid_identity 1 — how do I get it working again without creating a duplicate?",
+    "should_trigger": true,
+    "note": "Re-authorization, and the specific trap this skill carries: omitting --remote_identity_id creates a second identity and leaves the subscriptions broken."
+  },
+  {
+    "query": "Which remote identity ID should I use for the Facebook subscription I'm about to create?",
+    "should_trigger": false,
+    "expect_skill": "inspecting-remote-identities",
+    "note": "Collision guard. Looking an identity up is not authorizing one. These two skills split the same noun and would otherwise compete on every identity prompt."
+  },
+  {
+    "query": "Add OAuth login to our internal admin app.",
+    "should_trigger": false,
+    "note": "Negative. Building an OAuth flow is not authorizing an Openbridge remote identity."
+  }
+]

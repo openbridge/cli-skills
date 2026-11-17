@@ -1,0 +1,23 @@
+[
+  {
+    "query": "How do I find the remote identity ID for our Amazon Advertising account in Openbridge?",
+    "should_trigger": true,
+    "note": "The core trigger: a lookup, where the shared list is the right command and the account-owned list is the common wrong one."
+  },
+  {
+    "query": "Can you check whether any of our Openbridge third-party credentials have gone stale?",
+    "should_trigger": true,
+    "note": "The invalid_identity sweep, phrased without naming the field. A credential audit should reach this skill, not the caller-authentication one."
+  },
+  {
+    "query": "Connect our new Snowflake account to Openbridge.",
+    "should_trigger": false,
+    "expect_skill": "authorizing-remote-identities",
+    "note": "Collision guard, the mirror of the case in authorizing-remote-identities. Creating an identity is a browser flow; this skill only reads."
+  },
+  {
+    "query": "List the IAM roles attached to our staging cluster.",
+    "should_trigger": false,
+    "note": "Negative. Unrelated identity-shaped infrastructure work."
+  }
+]

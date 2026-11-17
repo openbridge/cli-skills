@@ -1,0 +1,23 @@
+[
+  {
+    "query": "obcmd just exited with code 4 and said not_authenticated. How do I fix it?",
+    "should_trigger": true,
+    "note": "The core trigger: the exact exit code and error code this skill exists to resolve."
+  },
+  {
+    "query": "Every obcmd command I run returns 403 even though my token works in the UI.",
+    "should_trigger": true,
+    "note": "Symptom phrasing, and the case most often misread as a permissions wall when it is an account-context mismatch."
+  },
+  {
+    "query": "Our Google Ads credential in Openbridge was revoked and the feed died. How do I reconnect it?",
+    "should_trigger": false,
+    "expect_skill": "authorizing-remote-identities",
+    "note": "Collision guard. A revoked third-party credential is a remote identity, not the caller's own obcmd token. Both are 'authentication' in plain English, which is exactly why this case exists."
+  },
+  {
+    "query": "Set up SSH key auth for my deploy box.",
+    "should_trigger": false,
+    "note": "Negative. Generic credential work is not obcmd authentication."
+  }
+]

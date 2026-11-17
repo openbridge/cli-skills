@@ -1,0 +1,23 @@
+[
+  {
+    "query": "I need to pull a list of our active Openbridge subscriptions with obcmd. What's the command?",
+    "should_trigger": true,
+    "note": "The core trigger: an obcmd invocation is about to happen and the agent does not yet know the grammar or that the CLI describes itself."
+  },
+  {
+    "query": "My script keeps breaking on obcmd output — sometimes I get a table, sometimes JSON, and the error handling never catches anything.",
+    "should_trigger": true,
+    "note": "Symptom phrasing. The cause is stdout/stderr separation and TTY-dependent output, which is this skill's output-guarantees section. Must fire without the words 'exit code' or 'json flag'."
+  },
+  {
+    "query": "Our Amazon Attribution subscription stopped loading data two days ago. What happened?",
+    "should_trigger": false,
+    "expect_skill": "diagnosing-openbridge-pipelines",
+    "note": "Collision guard. Every obcmd skill mentions obcmd; only the diagnosis skill owns a broken pipeline. This skill must not claim a task just because the tool is the same."
+  },
+  {
+    "query": "Rename the getUserById helper to findUser across the repo.",
+    "should_trigger": false,
+    "note": "Negative. Ordinary coding work must not pull in a CLI skill."
+  }
+]

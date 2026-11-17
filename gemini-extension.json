@@ -1,0 +1,6 @@
+{
+  "name": "skills",
+  "description": "Skills collection for coding agents: reusable techniques and workflows, packaged from a single source of truth",
+  "version": "0.1.0",
+  "contextFileName": "GEMINI.md"
+}

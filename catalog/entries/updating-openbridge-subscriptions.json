@@ -1,0 +1,10 @@
+{
+  "name": "updating-openbridge-subscriptions",
+  "classification": "reference",
+  "origin": "first-party",
+  "maintainers": [
+    "Openbridge"
+  ],
+  "license": "MIT",
+  "registries": {}
+}

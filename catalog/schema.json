@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skills catalog entry",
+  "description": "Governance record for one skill. These are facts about provenance and licensing that a SKILL.md cannot state about itself, so unlike the rest of the catalog they are written by hand rather than generated. They are not duplication: nothing here is derivable from frontmatter.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "classification", "origin", "maintainers", "license", "registries"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Matches the skill directory and its frontmatter name, per the Agent Skills specification."
+    },
+    "classification": {
+      "enum": ["certified", "reference"],
+      "description": "certified: carries both positive and negative trigger cases in evals/<name>/trigger-cases.json. reference: not yet certified. Deliberately NOT a self-declaration in frontmatter — scripts/catalog.sh refuses the claim without the cases."
+    },
+    "origin": {
+      "enum": ["first-party", "third-party"],
+      "description": "Who maintains it. Kept separate from classification on purpose: a first-party skill that is not yet certified is not a community contribution, and a third-party skill can be certified."
+    },
+    "maintainers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1,
+      "description": "SPDX identifier, or the name of a bundled license file. A contributed skill may be licensed differently from the collection, which is why this is per-skill."
+    },
+    "registries": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Registry name to the identifier this skill carries there. Empty until published."
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "revision", "path"],
+      "description": "Where a third-party skill came from. Required when origin is third-party: without an immutable revision there is no way to say what was reviewed.",
+      "properties": {
+        "repository": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "revision": { "type": "string", "pattern": "^[0-9a-f]{40,64}$" },
+        "path": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "origin": { "const": "third-party" } },
+        "required": ["origin"]
+      },
+      "then": { "required": ["source"] }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "query": "What's the profile_id I should put in product_parameters for our Amazon Advertising subscription?",
+    "should_trigger": true,
+    "note": "The core trigger: a platform-side ID is needed for a product parameter, and amzadv-profile list is the only trustworthy source."
+  },
+  {
+    "query": "The customer gave me a Google Ads account number from their dashboard — will that work for the subscription?",
+    "should_trigger": true,
+    "note": "The rationalization this skill targets: an ID from a dashboard may belong to an account the identity cannot see. Must fire even though the user did not ask for a command."
+  },
+  {
+    "query": "Show me the Openbridge remote identities for our Google account.",
+    "should_trigger": false,
+    "expect_skill": "inspecting-remote-identities",
+    "note": "Collision guard. Identities and platform IDs are both 'IDs', and both skills take --remote_identity_id. This one starts where the identity is already known."
+  },
+  {
+    "query": "Generate a UUID v7 helper for our event ingest.",
+    "should_trigger": false,
+    "note": "Negative. Identifier generation has nothing to do with platform ID resolution."
+  }
+]

@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "recorded_at": "2026-10-27T17:24:23Z",
+  "recorded_by": "scripts/eval.sh --record",
+  "command": "scripts/bare-model.sh",
+  "skills": {
+    "authenticating-obcmd": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "authorizing-remote-identities": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "backfilling-openbridge-history": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "creating-openbridge-subscriptions": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "delivery-check": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "diagnosing-openbridge-pipelines": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "example-skill": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "inspecting-remote-identities": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "provisioning-openbridge-destinations": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "resolving-platform-ids": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "updating-openbridge-subscriptions": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "using-obcmd": {
+      "cases": 4,
+      "passed": 4,
+      "off_catalog": 0,
+      "certified": true
+    },
+    "using-skills": {
+      "cases": 2,
+      "passed": 2,
+      "off_catalog": 0,
+      "certified": true
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "skills",
+  "version": "0.1.0",
+  "description": "Skills collection for coding agents: reusable techniques and workflows, packaged from a single source of truth",
+  "author": {
+    "name": "Openbridge",
+    "email": "james@openbridge.com"
+  },
+  "homepage": "https://github.com/openbridge/skills",
+  "repository": "https://github.com/openbridge/skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "workflows",
+    "agents"
+  ],
+  "skills": "./skills/",
+  "sessionStart": {
+    "skill": "using-skills"
+  },
+  "skillInstructions": "Kimi Code tool mapping for skills.\n\nSkills describe actions, never tool names, so that one skills/ tree runs on every harness. On Kimi Code those actions resolve to the tools below.\n\n- When a skill says to ask the user, ask a clarifying question, present multiple-choice options, or wait for the user's choice, call Kimi Code's `AskUserQuestion` tool. Do not render those choices as plain assistant text unless `AskUserQuestion` is unavailable or the session is in auto permission mode.\n- For `AskUserQuestion`, provide 1 question with 2-4 concrete options when possible. Put the recommended option first and suffix its label with `(Recommended)`.\n- When a skill refers to a todo list or progress tracking, use Kimi Code's `TodoList` tool.\n- When a skill says to dispatch a subagent, use Kimi Code's `Agent` tool with a Kimi subagent type. Do not pass `general-purpose` as `subagent_type`.\n  - Implementation, code review, and other write-capable subagent work: `subagent_type: \"coder\"`. Paste the fully filled prompt into `prompt` and provide a short `description`.\n  - Read-only codebase exploration that would take several searches: `subagent_type: \"explore\"`.\n  - Read-only planning or architecture design: `subagent_type: \"plan\"`.\n- Keep dependent subagent steps sequential. Use multiple `Agent` calls, or `run_in_background: true` only when the work is genuinely independent.\n- When a skill refers to invoking another skill, use Kimi Code's native `Skill` tool.\n- Use Kimi Code's `Read`, `Write`, `Edit`, `Bash`, `Grep`, `Glob`, `FetchURL`, `WebSearch`, and MCP tools by their actual exposed names.\n- When a skill asks to search file contents, use `Grep`; to find files by path or pattern, use `Glob`; to fetch a URL, use `FetchURL`; to search the web, use `WebSearch`.",
+  "interface": {
+    "displayName": "Openbridge Skills",
+    "shortDescription": "Reusable techniques and workflows for coding agents",
+    "longDescription": "A skills collection packaged from a single source of truth, so the same skills/ directory serves every harness. Includes a bootstrap skill that teaches the agent to check for an applicable skill before acting.",
+    "developerName": "Openbridge",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/openbridge/skills"
+  }
+}

@@ -1,0 +1,74 @@
+name: tests
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+
+jobs:
+  offline:
+    # The adapters are shell, JS, TS, and Python with no dependencies, so there
+    # is nothing to install and no lockfile to cache.
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # macOS and Linux differ on bash version and sed; both run the hook.
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # Node 22+ runs the Pi extension's TypeScript directly via type
+          # stripping. Below that, the Pi test skips rather than fails.
+          node-version: '22'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Report versions
+        run: |
+          bash --version | head -1
+          node --version
+          python3 --version
+
+      - name: Run offline tests
+        run: bash tests/run-tests.sh
+
+      - name: Check scripts are executable
+        # git mode 100755 is what survives a clone; a hook that loses its exec
+        # bit fails only on the harnesses that invoke it directly, and a tool in
+        # scripts/ that loses it fails only for whoever follows the README.
+        run: |
+          for f in hooks/session-start hooks/run-hook.cmd scripts/*.sh; do
+            mode=$(git ls-files -s "$f" | awk '{print $1}')
+            [ "$mode" = "100755" ] || { echo "$f has mode $mode, expected 100755"; exit 1; }
+          done
+          echo "exec bits ok"
+
+      - name: Eval corpus structure
+        # The model-backed half of scripts/eval.sh never runs in CI: it costs
+        # money and is nondeterministic. The structural half is neither.
+        run: bash scripts/eval.sh --check
+
+      - name: Identity agreement
+        # CONTRIBUTING lists these among the pre-pull-request checks and the
+        # README says CI runs them. Until this step existed, neither was true:
+        # the suite above does not call identity.sh, so a manifest could drift
+        # and the build stayed green.
+        run: bash scripts/identity.sh --check
+
+      - name: Identity audit
+        # Fails on a copy of the collection name that .skills-identity.json
+        # does not track. Only gates anything because --audit now returns 1;
+        # before that it reported drift and exited 0.
+        run: bash scripts/identity.sh --audit
+
+      - name: Generated files are current
+        # A stale generated file should fail the build rather than land
+        # quietly, which is what CONTRIBUTING has always claimed happens here.
+        run: |
+          bash scripts/catalog.sh --check
+          bash scripts/registry.sh --check

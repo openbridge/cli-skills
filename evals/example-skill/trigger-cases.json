@@ -1,0 +1,23 @@
+[
+  {
+    "query": "I want to add a skill to this collection. What structure should it have?",
+    "should_trigger": true,
+    "note": "The core trigger: authoring, before any SKILL.md exists."
+  },
+  {
+    "query": "Create a skill that walks through reviewing a pull request.",
+    "should_trigger": true,
+    "note": "An imperative with no mention of structure or format. The trigger must fire on the task, not on its vocabulary."
+  },
+  {
+    "query": "Can you confirm skills are loading properly on Gemini CLI?",
+    "should_trigger": false,
+    "expect_skill": "delivery-check",
+    "note": "Collision guard, the mirror of the one in delivery-check's file. Each direction can fail independently."
+  },
+  {
+    "query": "What is the difference between a plugin hook and an MCP server?",
+    "should_trigger": false,
+    "note": "Negative. A question about the domain is not a request to do the work."
+  }
+]

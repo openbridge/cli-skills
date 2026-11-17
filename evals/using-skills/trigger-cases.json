@@ -1,0 +1,13 @@
+[
+  {
+    "query": "What skills do you have available?",
+    "should_trigger": true,
+    "note": "The question every live smoke test opens with. The first-turn behavioural claim that used to sit beside this case now lives in host-behavior.md: a bootstrap is injected by the session-start hook rather than selected from a catalog, so a selection eval is the wrong instrument for it."
+  },
+  {
+    "query": "Verify the skill delivery pipeline works on Codex.",
+    "should_trigger": false,
+    "expect_skill": "delivery-check",
+    "note": "using-skills is written to match almost everything, so the risk it carries is drowning out specific skills. The most specific applicable skill has to win."
+  }
+]

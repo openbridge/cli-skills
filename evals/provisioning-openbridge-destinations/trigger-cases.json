@@ -1,0 +1,23 @@
+[
+  {
+    "query": "Create a new Redshift destination in Openbridge for the marketing warehouse.",
+    "should_trigger": true,
+    "note": "The core trigger: the one write this part of the API offers, and it is asynchronous."
+  },
+  {
+    "query": "destination get keeps coming back 202. Is it stuck, and should I just create it again?",
+    "should_trigger": true,
+    "note": "The exact failure this skill prevents: 202 means still working, and re-creating provisions a second destination."
+  },
+  {
+    "query": "Point the Brand X pipeline at our existing BigQuery destination.",
+    "should_trigger": false,
+    "expect_skill": "updating-openbridge-subscriptions",
+    "note": "Collision guard. This skill ends once the destination exists and its storage_group_id is known; pointing an existing pipeline at an existing destination is a subscription edit. The 2026-10-27 run answered updating-openbridge-subscriptions, which is correct - the hint previously named creating-openbridge-subscriptions and was wrong."
+  },
+  {
+    "query": "Provision a new S3 bucket with Terraform for our logs.",
+    "should_trigger": false,
+    "note": "Negative. Infrastructure provisioning outside Openbridge."
+  }
+]

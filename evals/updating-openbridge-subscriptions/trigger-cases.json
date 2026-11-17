@@ -1,0 +1,34 @@
+[
+  {
+    "query": "Pause the Openbridge subscription for Brand X until the account team sorts out their contract.",
+    "should_trigger": true,
+    "note": "The core trigger, and the case where paused-versus-cancelled matters: cancellation is terminal with no delete to undo it."
+  },
+  {
+    "query": "I updated product_parameters on a subscription and now the profile_id seems to have vanished. What happened?",
+    "should_trigger": true,
+    "note": "Symptom phrasing for merge semantics. The agent must read parameters back with subscription-parameter list rather than trusting the update response."
+  },
+  {
+    "query": "add the search terms table to subscription 133390, the team wants it in the warehouse by friday",
+    "should_trigger": true,
+    "note": "'add' WITH a named subscription. The mirror of the create skill's claim on the word: a target makes it an update, and product_parameters merges rather than replaces."
+  },
+  {
+    "query": "add amazon attribution for the UK marketplace, we already have US running",
+    "should_trigger": false,
+    "expect_skill": "creating-openbridge-subscriptions",
+    "note": "The case this collection got wrong before. 'Add' plus an existing sibling pipeline reads like an edit, but nothing names a record to update \u2014 profile_id is singular, so the UK is a new subscription."
+  },
+  {
+    "query": "Create a new Openbridge subscription for our Facebook ad account.",
+    "should_trigger": false,
+    "expect_skill": "creating-openbridge-subscriptions",
+    "note": "Collision guard, the mirror of the case in creating-openbridge-subscriptions."
+  },
+  {
+    "query": "Bump the dependency versions in package.json.",
+    "should_trigger": false,
+    "note": "Negative. Ordinary maintenance work."
+  }
+]

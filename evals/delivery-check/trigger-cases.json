@@ -1,0 +1,23 @@
+[
+  {
+    "query": "I just installed this plugin in Cursor. How do I know it's actually working?",
+    "should_trigger": true,
+    "note": "The core trigger: a new harness, wanting proof rather than an assurance."
+  },
+  {
+    "query": "The bootstrap isn't showing up at the start of my Copilot CLI sessions.",
+    "should_trigger": true,
+    "note": "Phrased as a bug report, not as a request to verify. The description has to catch the symptom, not only the intent."
+  },
+  {
+    "query": "I want to write a new skill for our deployment workflow.",
+    "should_trigger": false,
+    "expect_skill": "example-skill",
+    "note": "Collision guard. Both skills are about skills; only one is about authoring. These two were a single skill once, and splitting them is worthless if the descriptions still overlap."
+  },
+  {
+    "query": "Refactor this function to use a lookup table instead of the if-chain.",
+    "should_trigger": false,
+    "note": "Negative. Ordinary coding work must not pull in a skill about skills."
+  }
+]

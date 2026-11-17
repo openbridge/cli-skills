@@ -1,0 +1,47 @@
+---
+name: {{name}}
+description: {{description}}
+license: {{license}}
+---
+
+# {{title}}
+
+## Overview
+
+One paragraph: what this skill is for, and what it changes about how the work is
+done. Write for an agent that has just loaded this file mid-task and has no other
+context.
+
+## When to use
+
+- The situation that should pull this skill in.
+- A second one, ideally a case the frontmatter trigger does not obviously cover.
+
+**Not for:** the nearest neighbouring case that belongs to a different skill.
+Naming it here is what stops two descriptions competing for the same prompts.
+
+## Procedure
+
+1. First step, phrased as an action to take rather than a thing to know.
+2. Second step.
+3. Third step.
+
+State steps as actions, never as tool names: "dispatch a subagent", "track each
+item as a task", "read the file". That is the whole reason one skills directory
+serves every harness — where a harness's tools differ, the mapping belongs in
+`skills/using-skills/references/<harness>-tools.md`.
+
+## Rationalizations
+
+Optional, and worth keeping if this skill is one people skip under pressure. List
+the thought that precedes skipping it, and the reality next to it.
+
+| Thought | Reality |
+|---|---|
+| "This case is too small to bother" | Small cases are where the process quietly lapses. |
+
+## Supporting files
+
+Delete this section if the skill is a single file. Otherwise link every file in
+`references/` — a reference nothing links is a file no agent will ever read, and
+the integrity test fails on it in both directions.

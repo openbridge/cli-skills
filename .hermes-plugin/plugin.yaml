@@ -1,0 +1,7 @@
+name: skills
+version: 0.1.0
+description: Skills collection and workflow bootstrap for Hermes Agent
+author: Openbridge
+license: MIT
+provides_hooks:
+  - pre_llm_call

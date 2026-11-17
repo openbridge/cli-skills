@@ -1,0 +1,25 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Openbridge Reference Skills",
+      "description": "First-party skills maintained by Openbridge, not yet certified.",
+      "skills": [
+        "authenticating-obcmd",
+        "authorizing-remote-identities",
+        "backfilling-openbridge-history",
+        "creating-openbridge-subscriptions",
+        "delivery-check",
+        "diagnosing-openbridge-pipelines",
+        "example-skill",
+        "inspecting-remote-identities",
+        "provisioning-openbridge-destinations",
+        "resolving-platform-ids",
+        "updating-openbridge-subscriptions",
+        "using-obcmd",
+        "using-skills"
+      ]
+    }
+  ]
+}

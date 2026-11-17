@@ -1,0 +1,28 @@
+{
+  "name": "skills",
+  "version": "0.1.0",
+  "description": "Skills collection and runtime bootstrap for coding agents",
+  "type": "module",
+  "main": "./.opencode/plugins/skills.js",
+  "license": "MIT",
+  "author": {
+    "name": "Openbridge",
+    "email": "james@openbridge.com"
+  },
+  "homepage": "https://github.com/openbridge/skills",
+  "repository": "https://github.com/openbridge/skills",
+  "keywords": [
+    "pi-package",
+    "skills",
+    "workflows",
+    "agents"
+  ],
+  "pi": {
+    "extensions": [
+      "./.pi/extensions/skills.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  }
+}

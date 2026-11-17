@@ -1,0 +1,228 @@
+{
+  "catalogVersion": 1,
+  "skills": [
+    {
+      "name": "authenticating-obcmd",
+      "description": "Use when an obcmd command exits 4 or reports not_authenticated, http_401 or credential_in_argv, when every command fails the same way, when http_403 means the token belongs to a different account than the one being asked for, when obcmd is being set up for the first time, or before a session that will issue many Openbridge calls - decides whether to re-authenticate, switch account context, or stop and ask a human",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/authenticating-obcmd",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "authorizing-remote-identities",
+      "description": "Use when connecting a new third-party account (Amazon, Google, Facebook, Shopify, Snowflake and the rest) to Openbridge, or re-authorizing one whose credentials were revoked, before attempting to create a subscription that needs it",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/authorizing-remote-identities",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "backfilling-openbridge-history",
+      "description": "Use when asked to backfill, re-run, reprocess or fetch historical data for an Openbridge subscription, or to stop a backfill already running, before calling history trigger - the date flags are counter-intuitive and the subscription must already have a job",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/backfilling-openbridge-history",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "creating-openbridge-subscriptions",
+      "description": "Use when someone wants to add, create, set up, connect, onboard or start pulling data into a new Openbridge subscription, pipeline, feed or source - the words add and new mean create, so never stall to ask whether they meant to edit something - and use it before calling subscription create; it walks the fixed selection order (product, identity, profile, marketplace, tables, destination, name) and takes every option list from the product card rather than from existing pipelines",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/creating-openbridge-subscriptions",
+      "files": [
+        "SKILL.md",
+        "references/selectors.md",
+        "references/worked-create.md"
+      ]
+    },
+    {
+      "name": "delivery-check",
+      "description": "Use when bringing up a new harness and confirming that skills are actually being discovered, loaded, and read end to end",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/delivery-check",
+      "files": [
+        "SKILL.md",
+        "references/deep-check.md"
+      ]
+    },
+    {
+      "name": "diagnosing-openbridge-pipelines",
+      "description": "Use when an Openbridge subscription stops producing data, data arrives late or incomplete, a job or healthcheck reports an error, a job, transaction or healthcheck call returns 403 for one subscription while other obcmd commands work, or the user asks why a pipeline is broken - before changing any configuration or re-running history",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/diagnosing-openbridge-pipelines",
+      "files": [
+        "SKILL.md",
+        "references/reverse-lookups.md",
+        "references/transaction-queries.md"
+      ]
+    },
+    {
+      "name": "example-skill",
+      "description": "Use when authoring a new skill in this collection, before writing any SKILL.md, to copy a correct structure",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/example-skill",
+      "files": [
+        "SKILL.md",
+        "references/supporting-file.md"
+      ]
+    },
+    {
+      "name": "inspecting-remote-identities",
+      "description": "Use when you need the remote_identity_id for a subscription, when choosing between remote-identity and remote-identity-shared, or when checking whether a third-party credential has been revoked (invalid_identity), before attaching an identity to anything",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/inspecting-remote-identities",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "provisioning-openbridge-destinations",
+      "description": "Use when creating an Openbridge storage destination (Redshift, BigQuery, Snowflake, S3 and the rest), polling a destination_create operation that is still running, or finding the storage_group_id a subscription needs - before calling destination create or storage list",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/provisioning-openbridge-destinations",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "resolving-platform-ids",
+      "description": "Use when a subscription or product parameter needs a platform-side identifier - an Amazon Advertising profile or advertiser, an SP-API marketplace or seller ID, a Google Ads customer, a Campaign Manager profile or report, a Search Ads 360 agency, a YouTube channel, a Facebook ad account or page, or a Shopify shop - before putting any such ID into product_parameters",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/resolving-platform-ids",
+      "files": [
+        "SKILL.md",
+        "references/platform-lookups.md"
+      ]
+    },
+    {
+      "name": "updating-openbridge-subscriptions",
+      "description": "Use when changing, pausing, repointing, renaming or cancelling an Openbridge subscription that already exists - the request names it, by ID or by a name you can look up - or when reading back which product parameters are stored, before calling subscription update or subscription cancel; a request to add or set up a pipeline that does not exist yet is a create, so hand that to creating-openbridge-subscriptions instead",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/updating-openbridge-subscriptions",
+      "files": [
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "using-obcmd",
+      "description": "Use when running any obcmd command or working against the Openbridge APIs (subscriptions, jobs, healthchecks, remote identities, history, destinations), before the first invocation - covers discovery, exit-code branching, dry-run and output guarantees",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/using-obcmd",
+      "files": [
+        "SKILL.md",
+        "references/error-codes.md",
+        "references/output-guarantees.md",
+        "references/pagination.md"
+      ]
+    },
+    {
+      "name": "using-skills",
+      "description": "Use when starting any conversation - establishes how to find and invoke skills, and requires checking for an applicable skill before any other response or action",
+      "license": "MIT",
+      "status": "reference",
+      "origin": "first-party",
+      "maintainers": [
+        "Openbridge"
+      ],
+      "registries": {},
+      "governanceLicense": "MIT",
+      "path": "skills/using-skills",
+      "files": [
+        "SKILL.md",
+        "references/antigravity-tools.md",
+        "references/codex-tools.md",
+        "references/gemini-tools.md",
+        "references/hermes-tools.md",
+        "references/pi-tools.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+schema_version: "1.1"
+name: delivery-check-routing
+tags: [routing, delivery]
+execution:
+  # Phrased as a symptom rather than a request to verify: the description has to
+  # catch how someone actually reports the problem.
+  prompt: I just installed this plugin in Cursor. How do I know it's actually working?
+  max_turns: 6
+  timeout_seconds: 120
+  allowed_tools: [Skill]
+graders:
+  - name: delivery-check-fired
+    type: tool_used
+    tool: Skill
+    # The collection prefix is optional: a fork renames it, and this case should
+    # keep working after scripts/identity.sh rename.
+    input_match: '"skill"\s*:\s*"(?:[\w-]+:)?delivery-check"'
+  - name: selection-announced
+    type: regex
+    target: trace
+    pattern: 'Using (?:[\w-]+:)?delivery-check to'

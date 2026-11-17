@@ -1,0 +1,23 @@
+[
+  {
+    "query": "We're missing all of January for subscription 48213 — can you re-pull that month?",
+    "should_trigger": true,
+    "note": "The core trigger, and the case where the reversed date flags bite: start_date must be the more recent date."
+  },
+  {
+    "query": "I kicked off a huge backfill by mistake. How do I stop it?",
+    "should_trigger": true,
+    "note": "The cancel path. history cancel is one transaction, history delete is every transaction on the subscription — a scope difference worth previewing."
+  },
+  {
+    "query": "No data has arrived from this subscription for three days. Can you work out why?",
+    "should_trigger": false,
+    "expect_skill": "diagnosing-openbridge-pipelines",
+    "note": "Collision guard. Missing data reads as a backfill request, but backfilling over a broken pipeline queues work that fails identically. Diagnosis comes first."
+  },
+  {
+    "query": "Restore last week's Postgres backup into staging.",
+    "should_trigger": false,
+    "note": "Negative. Generic historical-data restoration is not an Openbridge history run."
+  }
+]

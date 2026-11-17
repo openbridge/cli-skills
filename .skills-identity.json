@@ -1,0 +1,128 @@
+{
+  "_comment": [
+    "Declarative identity map. package.json is the source of truth; every entry",
+    "below is a copy that must agree with it. scripts/identity.sh reads this file",
+    "to check, set, and rename identity across the whole tree.",
+    "",
+    "Adding a harness means adding its manifest here in the same commit. A target",
+    "this file does not list is a target nothing keeps in sync."
+  ],
+
+  "source": "package.json",
+
+  "fields": {
+    "name": [
+      { "file": "package.json",                     "json": "name" },
+      { "file": ".claude-plugin/plugin.json",       "json": "name" },
+      { "file": ".claude-plugin/marketplace.json",  "json": "plugins.0.name" },
+      { "file": ".codex-plugin/plugin.json",        "json": "name" },
+      { "file": ".cursor-plugin/plugin.json",       "json": "name" },
+      { "file": ".devin-plugin/plugin.json",        "json": "name" },
+      { "file": ".kimi-plugin/plugin.json",         "json": "name" },
+      { "file": ".agents/plugins/marketplace.json", "json": "plugins.0.name" },
+      { "file": "gemini-extension.json",            "json": "name" },
+      { "file": ".hermes-plugin/plugin.yaml",       "yaml": "name" }
+    ],
+    "version": [
+      { "file": "package.json",                    "json": "version" },
+      { "file": ".claude-plugin/plugin.json",      "json": "version" },
+      { "file": ".claude-plugin/marketplace.json", "json": "plugins.0.version" },
+      { "file": ".codex-plugin/plugin.json",       "json": "version" },
+      { "file": ".cursor-plugin/plugin.json",      "json": "version" },
+      { "file": ".devin-plugin/plugin.json",       "json": "version" },
+      { "file": ".kimi-plugin/plugin.json",        "json": "version" },
+      { "file": "gemini-extension.json",           "json": "version" },
+      { "file": ".hermes-plugin/plugin.yaml",      "yaml": "version" }
+    ],
+    "homepage": [
+      { "file": "package.json",               "json": "homepage" },
+      { "file": ".claude-plugin/plugin.json", "json": "homepage" },
+      { "file": ".codex-plugin/plugin.json",  "json": "homepage" },
+      { "file": ".codex-plugin/plugin.json",  "json": "interface.websiteURL" },
+      { "file": ".cursor-plugin/plugin.json", "json": "homepage" },
+      { "file": ".devin-plugin/plugin.json",  "json": "homepage" },
+      { "file": ".kimi-plugin/plugin.json",   "json": "homepage" },
+      { "file": ".kimi-plugin/plugin.json",   "json": "interface.websiteURL" }
+    ],
+    "repository": [
+      { "file": "package.json",               "json": "repository" },
+      { "file": ".claude-plugin/plugin.json", "json": "repository" },
+      { "file": ".codex-plugin/plugin.json",  "json": "repository" },
+      { "file": ".cursor-plugin/plugin.json", "json": "repository" },
+      { "file": ".devin-plugin/plugin.json",  "json": "repository" },
+      { "file": ".kimi-plugin/plugin.json",   "json": "repository" }
+    ]
+  },
+
+  "derived": [
+    {
+      "id": "marketplace-name",
+      "from": "name",
+      "template": "openbridge-{value}",
+      "targets": [
+        { "file": ".claude-plugin/marketplace.json",  "json": "name" },
+        { "file": ".agents/plugins/marketplace.json", "json": "name" }
+      ]
+    }
+  ],
+
+  "slug": {
+    "_comment": "homepage minus the github.com prefix, embedded in install commands",
+    "from": "homepage",
+    "strip": "https://github.com/",
+    "targets": [
+      { "file": ".opencode/INSTALL.md",      "pattern": "git\\+https://github\\.com/([\\w.-]+/[\\w.-]+)\\.git" },
+      { "file": ".hermes-plugin/__init__.py", "pattern": "hermes plugins install ([\\w.-]+/[\\w.-]+)" }
+    ]
+  },
+
+  "literals": {
+    "_comment": [
+      "The collection name appears as a bare string in source files that no JSON",
+      "path can reach — bootstrap prose, duplicate-guard markers, fallbacks. A",
+      "declarative list cannot find these; rename rewrites them and --audit greps",
+      "for the ones nobody listed."
+    ],
+    "files": [
+      ".opencode/plugins/{name}.js",
+      ".pi/extensions/{name}.ts",
+      ".hermes-plugin/__init__.py",
+      ".opencode/INSTALL.md",
+      "README.md",
+      "THIRD_PARTY_NOTICES.md",
+      "skills/using-skills/references/hermes-tools.md",
+      ".kimi-plugin/plugin.json",
+      ".claude-plugin/marketplace.json",
+      "docs/harness-support-matrix.md",
+      "docs/status.md",
+      "docs/live-smoke-tests.md",
+      "docs/hermes-local-dev-install.md",
+      "scripts/bare-model.sh"
+    ]
+  },
+
+  "renames": [
+    {
+      "path": ".opencode/plugins/{name}.js",
+      "referenced_by": [{ "file": "package.json", "json": "main", "template": "./.opencode/plugins/{name}.js" }]
+    },
+    {
+      "path": ".pi/extensions/{name}.ts",
+      "referenced_by": [{ "file": "package.json", "json": "pi.extensions.0", "template": "./.pi/extensions/{name}.ts" }]
+    }
+  ],
+
+  "audit": {
+    "_comment": "Paths where an occurrence of the name or version is expected and not drift.",
+    "exclude": [
+      "^\\.skills-identity\\.json$",
+      "^scripts/identity\\.sh$",
+      "^todo\\.md$",
+      "^catalog/",
+      "^evals/",
+      "^RELEASE-NOTES\\.md$",
+      "^REVIEW_FINDINGS\\.md$",
+      "^package-lock\\.json$"
+    ]
+  }
+}

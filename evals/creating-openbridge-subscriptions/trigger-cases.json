@@ -1,0 +1,50 @@
+[
+  {
+    "query": "Set up a new Openbridge pipeline from Amazon Attribution into our Redshift destination.",
+    "should_trigger": true,
+    "note": "The core trigger, phrased as 'pipeline' rather than 'subscription' — the word users actually reach for."
+  },
+  {
+    "query": "add a facebook page insights feed for the openbridge page please",
+    "should_trigger": true,
+    "note": "'add' with no existing record named. This is the case that previously stalled on 'did you mean create or edit?' — the create skill has to claim the word."
+  },
+  {
+    "query": "we just got the amazon ads creds authorized for LY Berditchev, i need attribution data flowing for US MX and BR. dont care about the publishers table",
+    "should_trigger": true,
+    "note": "Multi-marketplace with a stage exclusion and no IDs. Exercises the profile-is-a-marketplace fan-out and the table multi-select."
+  },
+  {
+    "query": "what products can we pull from amazon seller central and what tables does each one land?",
+    "should_trigger": true,
+    "note": "A browse that is really the first step of a create — product menu plus stage names. Without this skill the agent invents its own product search."
+  },
+  {
+    "query": "My subscription create keeps returning a 400 and I can't see what's wrong with the body.",
+    "should_trigger": true,
+    "note": "Failure phrasing. The usual causes are an inactive product and stage_ids passed as an array instead of a string, both of which are in this skill's procedure."
+  },
+  {
+    "query": "Change the stage_ids on subscription 48213 to add the new payload.",
+    "should_trigger": false,
+    "expect_skill": "updating-openbridge-subscriptions",
+    "note": "Collision guard. 'add' plus a named subscription is an update; only the update skill carries the merge semantics."
+  },
+  {
+    "query": "the amazon ads identity for brand x got revoked, can you reauthorize it so our pipelines start again",
+    "should_trigger": false,
+    "expect_skill": "authorizing-remote-identities",
+    "note": "Second collision. Identity work is a prerequisite this skill hands off to, not something it performs."
+  },
+  {
+    "query": "Add a Stripe webhook subscription to our billing service.",
+    "should_trigger": false,
+    "note": "Negative. 'Add' plus 'subscription' in an unrelated sense must not pull this in — the pushy 'add means create' wording is the risk being tested."
+  },
+  {
+    "query": "spin up a new redshift cluster for the analytics team and give me the connection string",
+    "should_trigger": false,
+    "expect_skill": "provisioning-openbridge-destinations",
+    "note": "Near miss. 'New' plus a destination name reads like a create, but the thing being created is the destination, not a subscription."
+  }
+]

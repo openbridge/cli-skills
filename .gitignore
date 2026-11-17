@@ -1,0 +1,12 @@
+# working notes, not shipped
+todo.md
+conversation.md
+list-cando.md
+REVIEW_FINDINGS.md
+
+node_modules/
+.DS_Store
+*.log
+dist/
+__pycache__/
+*.pyc

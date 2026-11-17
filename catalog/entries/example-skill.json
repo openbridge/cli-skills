@@ -1,0 +1,10 @@
+{
+  "name": "example-skill",
+  "classification": "reference",
+  "origin": "first-party",
+  "maintainers": [
+    "Openbridge"
+  ],
+  "license": "MIT",
+  "registries": {}
+}

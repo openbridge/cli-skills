@@ -1,0 +1,38 @@
+{
+  "name": "skills",
+  "version": "0.1.0",
+  "description": "Skills collection for coding agents: reusable techniques and workflows, packaged from a single source of truth",
+  "author": {
+    "name": "Openbridge",
+    "email": "james@openbridge.com",
+    "url": "https://github.com/openbridge"
+  },
+  "homepage": "https://github.com/openbridge/skills",
+  "repository": "https://github.com/openbridge/skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "workflows",
+    "agents"
+  ],
+  "skills": "./skills/",
+  "hooks": {},
+  "interface": {
+    "displayName": "Openbridge Skills",
+    "shortDescription": "Reusable techniques and workflows for coding agents",
+    "longDescription": "A skills collection packaged from a single source of truth, so the same skills/ directory serves every harness. Includes a bootstrap skill that teaches the agent to check for an applicable skill before acting.",
+    "developerName": "Openbridge",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "What skills do you have available?",
+      "Use the delivery-check skill to confirm skill loading works."
+    ],
+    "websiteURL": "https://github.com/openbridge/skills",
+    "screenshots": []
+  }
+}

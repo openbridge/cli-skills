@@ -1,0 +1,19 @@
+schema_version: "1.1"
+name: example-skill-routing
+tags: [routing, authoring]
+execution:
+  # The collision that matters in this collection: both skills are about skills,
+  # and only one is about authoring. They were a single skill once.
+  prompt: Create a skill that walks through reviewing a pull request.
+  max_turns: 6
+  timeout_seconds: 120
+  allowed_tools: [Skill]
+graders:
+  - name: example-skill-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:[\w-]+:)?example-skill"'
+  - name: selection-announced
+    type: regex
+    target: trace
+    pattern: 'Using (?:[\w-]+:)?example-skill to'

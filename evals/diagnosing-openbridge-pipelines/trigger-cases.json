@@ -1,0 +1,23 @@
+[
+  {
+    "query": "Our Amazon subscription hasn't loaded anything since Tuesday. Can you find out why?",
+    "should_trigger": true,
+    "note": "The core trigger. The most common cause is a revoked third-party credential, which is step one of the ladder."
+  },
+  {
+    "query": "job list is returning 403 for a subscription I definitely own.",
+    "should_trigger": true,
+    "note": "The trap this skill names explicitly: a missing --subscription_ids reported as a permission error. Must fire on the symptom, not only on 'why is my pipeline broken'."
+  },
+  {
+    "query": "Re-run the last two weeks of data for subscription 48213.",
+    "should_trigger": false,
+    "expect_skill": "backfilling-openbridge-history",
+    "note": "Collision guard, the mirror of the case in backfilling-openbridge-history. A direct instruction to re-run is a backfill, not an investigation."
+  },
+  {
+    "query": "The CI pipeline is failing on the lint step.",
+    "should_trigger": false,
+    "note": "Negative. 'Pipeline' in the CI sense must not pull in an Openbridge data-pipeline skill."
+  }
+]

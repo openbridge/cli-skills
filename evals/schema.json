@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openbridge.github.io/skills/evals/schema.json",
+  "title": "Trigger cases",
+  "description": "evals/<skill>/trigger-cases.json — does a prompt pull in the skill it should? A flat array of {query, should_trigger}, the shape used across sibling collections, plus two additive keys a plain reader can ignore.",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": ["query", "should_trigger"],
+    "additionalProperties": false,
+    "properties": {
+      "query": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Exactly what a user would type. Not a paraphrase of the description — a trigger that only fires on its own restatement never fires in practice."
+      },
+      "should_trigger": {
+        "type": "boolean",
+        "description": "Whether THIS skill should be the one loaded. A reader that understands nothing else still gets a correct answer from this field alone."
+      },
+      "expect_skill": {
+        "type": "string",
+        "description": "Additive. When should_trigger is false because a DIFFERENT skill should win, name it. A boolean cannot express a collision, and collisions are the failure mode that grows with a collection rather than shrinking."
+      },
+      "note": {
+        "type": "string",
+        "description": "Additive. What the case protects. A case whose purpose nobody recorded gets deleted the first time it fails."
+      }
+    }
+  }
+}
